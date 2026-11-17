@@ -56,6 +56,9 @@
   .eyebrow s{text-decoration:none;font-size:17px;letter-spacing:0;display:inline-block}
   .in .eyebrow s{animation:flipsuit 1s .2s cubic-bezier(.2,.8,.2,1) both}
   @keyframes flipsuit{from{transform:rotateY(180deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
+  .hs{font-size:clamp(40px,5.4vw,92px);line-height:.98}
+  .capline{margin-top:16px;font-size:15px;color:var(--mute);text-align:center}
+  .lede.wide{max-width:620px;font-size:clamp(15px,1.25vw,18px);color:var(--mute)}
   .lede{font-size:clamp(16px,1.5vw,20px);color:rgba(255,255,255,.82);max-width:470px;margin-top:22px}
 
   /* reveal */
@@ -81,7 +84,7 @@
 
   /* 02 the table */
   #table{background:linear-gradient(180deg,var(--ink),#071631 60%,var(--ink))}
-  #table .cols{display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;align-items:center}
+  #table .cols{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
   .shot{position:relative;aspect-ratio:3/2;border-radius:22px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px var(--line)}
   .shot img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}
   .in .shot img{transform:none}
@@ -168,6 +171,7 @@
     .slide{padding:92px var(--gut) 84px}
     h1{font-size:clamp(84px,27vw,150px)}
     h2{font-size:clamp(50px,15.5vw,84px)}
+    .hs{font-size:clamp(34px,10.4vw,56px)}
     #chiphome{width:96px;height:96px;margin-top:18px}
     #hero .oval{width:150vw;aspect-ratio:.72;margin:calc(150vw / -1.44) 0 0 -75vw}
     .shot{border-radius:16px;aspect-ratio:4/3}
@@ -225,16 +229,13 @@
 <section class="slide" id="table">
   <div class="inner cols">
     <div>
-      <div class="eyebrow r"><s>♠</s>The table</div>
-      <h2 class="r d1">One table.<br><i>Four stools.</i></h2>
-      <p class="lede r d2">A 1win poker table on a platform. We sit down at it, and it goes off the open ramp of the plane.</p>
+      <h2 class="hs r">This New Year's, we're riding a 1win poker table <i>out of a plane.</i></h2>
     </div>
-    <div class="shot r d2">
-      <img src="photos/stools.jpg" alt="Concept render: a 1win poker table and four stools on a thin metal platform inside the plane, ramp open">
-      <i class="spot s1" style="left:56%;top:37%"><span>The felt</span></i>
-      <i class="spot s2 l" style="left:41.5%;top:27.5%"><span>Every stool</span></i>
-      <i class="spot s3 l" style="left:47%;top:81%"><span>The platform</span></i>
-      <i class="spot s4 l" style="left:38%;top:44%"><span>Chips and cards</span></i>
+    <div>
+      <div class="shot r d1">
+        <img src="photos/stools.jpg" alt="Concept render: a 1win poker table and four stools on a thin metal platform inside the plane, ramp open">
+      </div>
+      <p class="capline r d2">1win on the table, the stools and the platform.</p>
     </div>
   </div>
 </section>
@@ -244,24 +245,19 @@
   <svg class="ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" pathLength="261.6"/></svg>
   <div class="digits" aria-hidden="true"><span>3</span><span>2</span><span>1</span></div>
   <div class="door"><img src="photos/exit.jpg" alt="Concept render: four skydivers seated at the 1win poker table as it slides off the ramp"></div>
-  <div class="cap"><h2>Out <i>the back.</i></h2></div>
+  <div class="cap"><h2 class="hs">Ringing in the New Year <i>with 1win.</i></h2></div>
 </section>
 
 <!-- 04 -->
 <section class="slide" id="fall">
   <div class="bg"><img src="photos/freefall.jpg" alt="Concept render: the table in freefall with all four still seated, the plane above"></div>
-  <div class="shade"></div>
-  <div class="inner">
-    <h2 class="r">Four seats.<br><i>No floor.</i></h2>
-    <div class="notes r d1"><span>Camera flyer angle</span><span>1win on the crew</span></div>
-  </div>
 </section>
 
 <!-- 05 -->
 <section class="slide" id="crew">
   <div class="inner">
-    <div class="eyebrow r"><s class="red">♥</s>The crew</div>
-    <h2 class="r d1">At <i>the table.</i></h2>
+    <h2 class="r">The <i>creators.</i></h2>
+    <p class="lede wide r d1">These are potential creators that I'll aim to get on the project. All of this is dependent on budget approval and creator availability.</p>
     <div class="hand">
       <div class="card lead" style="--i:0;--tilt:-2deg"><div class="flip">
         <div class="face back">1win</div>
@@ -281,7 +277,7 @@
       </div></div>
       <div class="card" style="--i:4;--tilt:-1.5deg"><div class="flip">
         <div class="face back">1win</div>
-        <div class="face front"><span class="idx">F<small>♠</small></span><span class="idx b">F<small>♠</small></span><span class="mono">FC</span><b>Freddy Chase</b><em>Creator · TBC</em></div>
+        <div class="face front"><span class="idx">F<small>♠</small></span><span class="idx b">F<small>♠</small></span><span class="mono">FC</span><b>Freddy Chase</b><em>Creator</em></div>
       </div></div>
       <div class="card" style="--i:5;--tilt:1deg"><div class="flip">
         <div class="face back">1win</div>
@@ -296,14 +292,14 @@
   <div class="bg"><img src="photos/below.jpg" alt="Concept render: looking up as the table and its four riders drop off the ramp"></div>
   <div class="shade"></div>
   <div class="inner">
-    <h2 class="r">The last hand<br><i>of the year.</i></h2>
+    <h2 class="r">Happy <i>New&nbsp;Year.</i></h2>
   </div>
 </section>
 
 <!-- 07 -->
 <section class="slide" id="buyin">
   <div class="inner">
-    <div class="eyebrow r"><s class="red">♦</s>The buy-in</div>
+    <div class="eyebrow r"><s class="red">♦</s>Budget</div>
     <div id="slot"></div>
     <div class="price r d1">$<span id="price" data-count="88000">88,000</span></div>
     <div class="under r d2">1win All In</div>
@@ -314,8 +310,8 @@
 <section class="slide" id="deal">
   <div class="inner">
     <div class="suits"><span style="--i:0">♠</span><span style="--i:1;color:#c8322f">♥</span><span style="--i:2;color:#c8322f">♦</span><span style="--i:3">♣</span></div>
-    <h2 class="r">Your <i>deal.</i></h2>
-    <p class="who r d1">Kyle Zellner<br><a href="mailto:kylezellner2@gmail.com">kylezellner2@gmail.com</a></p>
+    <h2 class="hs r">Kyle <i>Zellner</i></h2>
+    <p class="who r d1"><a href="mailto:kylezellner2@gmail.com">kylezellner2@gmail.com</a></p>
   </div>
 </section>
 
@@ -364,6 +360,7 @@ const FX=(function(){
   function frame(t){
     const dt=Math.min(40,t-last||16);last=t;acc+=dt;
     if(mode==='hero'&&acc>90){acc=0;trickle()}
+    if(mode==='soft'&&acc>190){acc=0;trickle()}
     if(mode==='last'&&acc>620){acc=0;firework(W*(.12+R()*.76),H*(.14+R()*.4))}
     if(mode==='buyin'&&acc>70){acc=0;bubble()}
     cx.clearRect(0,0,W,H);
@@ -384,8 +381,8 @@ const FX=(function(){
 })();
 const vis={};
 const modeIO=new IntersectionObserver(es=>{es.forEach(e=>{vis[e.target.id]=e.isIntersecting});
-  FX.setMode(['hero','last','buyin'].find(id=>vis[id])||'')},{threshold:.45});
-['hero','last','buyin'].forEach(id=>modeIO.observe($('#'+id)));
+  FX.setMode(['hero','last','buyin'].find(id=>vis[id])||((vis.table||vis.crew)?'soft':''))},{threshold:.4});
+['hero','last','buyin','table','crew'].forEach(id=>modeIO.observe($('#'+id)));
 
 /* split the title into letters so they can be dealt like cards */
 document.querySelectorAll('.split').forEach(el=>{
@@ -426,7 +423,7 @@ if(window.gsap&&window.ScrollTrigger&&!reduced){
     .to({}, {duration:.5});
 
   /* freefall drifts in */
-  gsap.fromTo('#fall .bg',{scale:1.18},{scale:1,ease:'none',scrollTrigger:{trigger:'#fall',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.fromTo('#fall .bg',{scale:1.12},{scale:1,ease:'none',scrollTrigger:{trigger:'#fall',start:'top bottom',end:'bottom top',scrub:true}});
 }else{
   document.querySelectorAll('#count .cap').forEach(e=>e.style.opacity=1);
   const d=$('.door');if(d)d.style.clipPath='none';

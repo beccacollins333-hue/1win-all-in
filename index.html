@@ -136,9 +136,13 @@
   .card.lead .face em{color:#a57a1e}
 
   /* 06 last hand */
-  #last{padding:0;justify-content:center;align-items:flex-start;text-align:center}
-  #last .shade{background:linear-gradient(180deg,rgba(5,13,28,.78) 0%,rgba(5,13,28,.2) 38%,rgba(5,13,28,0) 55%,rgba(5,13,28,.35) 100%)}
-  #last .inner{padding:13vh var(--gut) 0}
+  #last{padding:0;justify-content:center;align-items:center;text-align:center}
+  .gets{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:left}
+  .gets div{padding:20px 22px 20px;border-radius:18px;background:rgba(5,13,28,.62);border:1px solid rgba(232,197,122,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  .gets b{display:block;font-family:"Anton",Impact,sans-serif;font-weight:400;font-size:clamp(44px,5vw,84px);line-height:.95;color:var(--gold)}
+  .gets span{display:block;margin-top:12px;font-size:clamp(15px,1.25vw,18px);line-height:1.35;color:rgba(255,255,255,.9)}
+  #last .shade{background:linear-gradient(180deg,rgba(5,13,28,.8) 0%,rgba(5,13,28,.15) 30%,rgba(5,13,28,.1) 55%,rgba(5,13,28,.85) 100%)}
+  #last .inner{padding:92px var(--gut) 44px;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between}
   #last .bg img{object-position:50% 55%}
   #last h2{text-shadow:0 6px 40px rgba(0,0,0,.5)}
 
@@ -163,6 +167,7 @@
   @media (max-width:1000px){
     #table .cols{grid-template-columns:1fr;gap:34px}
     .hand{grid-template-columns:repeat(3,1fr);gap:14px}
+    .gets{grid-template-columns:repeat(2,1fr)}
     .face b{font-size:clamp(15px,2.6vw,24px)}.face em{font-size:clamp(14px,2.2vw,20px)}
   }
   @media (max-width:640px){
@@ -183,6 +188,8 @@
     #fall .inner{padding:0 var(--gut) 54px}
     .hand{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:38px}
     .face b{font-size:19px}.face em{font-size:16px}.idx{font-size:22px}.mono{font-size:28px}
+    .gets{gap:10px}
+    .gets div{padding:18px 14px 16px;border-radius:14px}
     #slot{width:92px;height:92px}
     #deal{min-height:80svh}
   }
@@ -287,7 +294,13 @@
   <div class="bg"><img src="photos/lookdown.jpg" alt="Concept render: looking down from the ramp at the four riders at the 1win poker table in freefall, gold smoke trailing"></div>
   <div class="shade"></div>
   <div class="inner">
-    <h2 class="r">Happy <i>New&nbsp;Year.</i></h2>
+    <h2 class="hs r">What <i>1win gets.</i></h2>
+    <div class="gets">
+      <div class="r d1"><b>1</b><span>Instagram Reel from each creator</span></div>
+      <div class="r d2"><b>10</b><span>trial reel variations on my page</span></div>
+      <div class="r d3"><b>1–3</b><span>camera flyers filming from outside, plus cameras mounted on the table</span></div>
+      <div class="r d4"><b>All</b><span>of the raw footage</span></div>
+    </div>
   </div>
 </section>
 

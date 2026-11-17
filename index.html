@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%231479FF%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-family=%22Arial%22 font-weight=%22900%22 font-size=%2230%22 fill=%22white%22 text-anchor=%22middle%22%3E1w%3C/text%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1win — All In</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: { ink: '#0A0B0E', panel: '#101218', winblue: '#1479FF', winblue2: '#4DA3FF', mute: '#8A93A6' },
+    fontFamily: { head: ['Sora', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+  } },
+};
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0A0B0E; }
+  section[id] { scroll-margin-top: 72px; }
+  ::selection { background: #1479FF; color: #fff; }
+  .eyebrow { letter-spacing: .28em; }
+  .hero-copy h1, .hero-copy p, .hero-copy h2 { text-shadow: 0 2px 28px rgba(0,0,0,.75), 0 1px 4px rgba(0,0,0,.5); }
+  .slot { position: relative; overflow: hidden; background: #101218; border: 1px solid rgba(255,255,255,.08); }
+  .slot img { width: 100%; height: 100%; object-fit: cover; display:block; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  .navlink { position: relative; min-height: 44px; display: inline-flex; align-items: center; }
+  .navlink::after { content:''; position:absolute; left:0; bottom:8px; height:1px; width:0; background:#1479FF; transition:width .3s ease; }
+  .navlink.active { color: #fff; }
+  .navlink.active::after { width: 100%; }
+  .zoom { cursor: zoom-in; }
+  #lb { position: fixed; inset: 0; z-index: 100; background: rgba(5,6,8,.94); display: none; align-items: center; justify-content: center; padding: 16px; cursor: zoom-out; }
+  #lb.open { display: flex; }
+  #lb img { max-width: 100%; max-height: 100%; border-radius: 12px; }
+  @media print { .reveal { opacity:1 !important; transform:none !important; } .no-print{display:none;} }
+</style>
+</head>
+<body class="font-body text-white antialiased">
+
+<header class="no-print fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between">
+    <a href="#hero" class="font-head font-extrabold tracking-tight text-sm">
+      <span class="text-winblue">1win</span> <span class="text-mute font-semibold">× All In</span>
+    </a>
+    <nav class="hidden md:flex gap-7 text-sm text-mute font-medium">
+      <a href="#concept" class="navlink hover:text-white transition">Concept</a>
+      <a href="#crew" class="navlink hover:text-white transition">Crew</a>
+      <a href="#branding" class="navlink hover:text-white transition">Branding</a>
+      <a href="#budget" class="navlink hover:text-white transition">Budget</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero" class="relative pt-[72px]">
+  <img src="photos/freefall.jpg" alt="Four creators seated at a 1win poker table in freefall" class="w-full block md:aspect-[2/1] md:object-cover md:object-[50%_35%]">
+  <div class="hidden md:block absolute inset-x-0 bottom-0 top-[72px] bg-gradient-to-t from-ink/85 via-ink/10 to-transparent"></div>
+  <div class="md:absolute md:inset-x-0 md:bottom-0 md:top-[72px] flex items-end pt-8 pb-4 md:pb-12 lg:pb-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 w-full hero-copy">
+      <p class="eyebrow uppercase text-white/90 text-xs md:text-sm font-semibold mb-4">New Year's · One table · One open ramp</p>
+      <h1 class="font-head font-extrabold leading-[0.92] text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight">1WIN<br>ALL IN.</h1>
+    </div>
+  </div>
+</section>
+
+<!-- 01 · CONCEPT -->
+<section id="concept" class="relative overflow-hidden py-14 md:py-20">
+  <div aria-hidden="true" class="pointer-events-none absolute top-10 right-6 select-none"><span class="font-head font-extrabold leading-none tracking-tighter text-white/[0.10]" style="font-size:9vw">1win</span></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+    <p class="eyebrow uppercase text-winblue text-sm font-bold reveal">01 — The Concept</p>
+    <div class="reveal mt-10 grid md:grid-cols-3 gap-6 md:gap-10 items-end">
+      <div>
+        <div class="font-head font-extrabold text-3xl md:text-4xl">The Table</div>
+        <p class="mt-3 text-mute leading-relaxed">A 1win poker table on a platform with four stools, pushed off the open ramp of the plane with the creators sitting at it.</p>
+      </div>
+      <div class="md:col-span-2 slot aspect-[3/2] rounded-xl zoom"><img src="photos/exit.jpg" alt="The poker table leaving the ramp"></div>
+    </div>
+    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mt-3 md:mt-6">
+      <figure><div class="slot aspect-[3/2] rounded-lg zoom"><img src="photos/stools.jpg" alt="In the plane"></div><figcaption class="mt-2 text-xs text-mute eyebrow uppercase">In the plane</figcaption></figure>
+      <figure><div class="slot aspect-[3/2] rounded-lg zoom"><img src="photos/exit.jpg" alt="Off the ramp"></div><figcaption class="mt-2 text-xs text-mute eyebrow uppercase">Off the ramp</figcaption></figure>
+      <figure><div class="slot aspect-[3/2] rounded-lg zoom"><img src="photos/freefall.jpg" alt="Freefall"></div><figcaption class="mt-2 text-xs text-mute eyebrow uppercase">Freefall</figcaption></figure>
+      <figure><div class="slot aspect-[3/2] rounded-lg zoom"><img src="photos/below.jpg" alt="From below"></div><figcaption class="mt-2 text-xs text-mute eyebrow uppercase">From below</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · CREW -->
+<section id="crew" class="relative overflow-hidden py-14 md:py-20 border-y border-white/5 bg-panel/40">
+  <div aria-hidden="true" class="pointer-events-none absolute top-10 right-6 select-none"><span class="font-head font-extrabold leading-none tracking-tighter text-white/[0.10]" style="font-size:9vw">1win</span></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+    <p class="eyebrow uppercase text-winblue text-sm font-bold reveal">02 — The Crew</p>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10 mt-12">
+      <div class="reveal text-center"><img src="photos/kyle.jpg" alt="Kyle Zellner" class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover mx-auto ring-2 ring-winblue"><div class="font-head font-bold mt-4">Kyle Zellner</div><div class="text-winblue text-xs eyebrow uppercase mt-1">Lead</div></div>
+      <div class="reveal text-center"><img src="photos/noah.jpg" alt="Noah Lipsitz" class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover mx-auto ring-1 ring-white/15"><div class="font-head font-bold mt-4">Noah Lipsitz</div><div class="text-mute text-xs eyebrow uppercase mt-1">Creator</div></div>
+      <div class="reveal text-center"><img src="photos/callie.jpg" alt="Callie Rounds" class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover mx-auto ring-1 ring-white/15"><div class="font-head font-bold mt-4">Callie Rounds</div><div class="text-mute text-xs eyebrow uppercase mt-1">Creator</div></div>
+      <div class="reveal text-center"><div class="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto ring-1 ring-white/15 bg-panel flex items-center justify-center font-head font-extrabold text-2xl text-mute">YR</div><div class="font-head font-bold mt-4">Yusef Reown</div><div class="text-mute text-xs eyebrow uppercase mt-1">Creator</div></div>
+      <div class="reveal text-center"><div class="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto ring-1 ring-white/15 bg-panel flex items-center justify-center font-head font-extrabold text-2xl text-mute">FC</div><div class="font-head font-bold mt-4">Freddy Chase</div><div class="text-mute text-xs eyebrow uppercase mt-1">Creator · TBC</div></div>
+      <div class="reveal text-center"><div class="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto ring-1 ring-white/15 bg-panel flex items-center justify-center font-head font-extrabold text-2xl text-mute">SR</div><div class="font-head font-bold mt-4">Shelby Robbins</div><div class="text-mute text-xs eyebrow uppercase mt-1">&nbsp;</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · BRANDING -->
+<section id="branding" class="relative overflow-hidden py-14 md:py-20">
+  <div aria-hidden="true" class="pointer-events-none absolute top-10 right-6 select-none"><span class="font-head font-extrabold leading-none tracking-tighter text-white/[0.10]" style="font-size:9vw">1win</span></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+    <p class="eyebrow uppercase text-winblue text-sm font-bold reveal">03 — Branding</p>
+    <div class="reveal mt-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div class="slot aspect-[3/2] rounded-xl zoom"><img src="photos/stools.jpg" alt="The 1win table and platform"></div>
+      <ul class="space-y-3 text-white/85 md:text-lg">
+        <li class="flex gap-3"><span class="text-winblue">→</span> 1win felt, chips and cards</li>
+        <li class="flex gap-3"><span class="text-winblue">→</span> 1win on every stool</li>
+        <li class="flex gap-3"><span class="text-winblue">→</span> 1win across the platform</li>
+        <li class="flex gap-3"><span class="text-winblue">→</span> Creators in 1win merch</li>
+        <li class="flex gap-3"><span class="text-winblue">→</span> Camera flyer angle</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BAND -->
+<section class="relative zoom" aria-label="From below">
+  <img src="photos/below.jpg" alt="The 1win table dropping off the ramp, seen from below" class="w-full block h-[60vh] md:h-[80vh] object-cover">
+  <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-ink/30"></div>
+  <div class="absolute inset-x-0 bottom-0 pb-8 md:pb-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 hero-copy">
+      <h2 class="font-head font-extrabold text-3xl sm:text-5xl md:text-6xl tracking-tight leading-[0.95]">THE LAST HAND<br>OF THE YEAR.</h2>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · BUDGET -->
+<section id="budget" class="relative overflow-hidden py-14 md:py-20">
+  <div aria-hidden="true" class="pointer-events-none absolute top-10 right-6 select-none"><span class="font-head font-extrabold leading-none tracking-tighter text-white/[0.10]" style="font-size:9vw">1win</span></div>
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <p class="eyebrow uppercase text-winblue text-sm font-bold reveal">04 — Budget</p>
+    <div class="reveal rounded-2xl border border-white/10 p-10 md:p-14 text-center mt-12 max-w-xl mx-auto">
+      <div class="font-head font-bold text-lg">1win All In</div>
+      <div class="font-head font-extrabold text-6xl md:text-7xl text-winblue mt-4">$88,000</div>
+    </div>
+  </div>
+</section>
+
+<footer class="relative overflow-hidden py-14 md:py-20 border-t border-white/5 bg-panel/40 text-center">
+  <div class="relative max-w-3xl mx-auto px-4 sm:px-6">
+    <p class="font-head font-extrabold text-2xl md:text-3xl tracking-tight reveal">Kyle Zellner</p>
+    <p class="text-mute mt-3 reveal"><a href="mailto:kylezellner2@gmail.com" class="text-winblue hover:underline inline-block py-3">kylezellner2@gmail.com</a></p>
+  </div>
+</footer>
+
+<div id="lb" class="no-print" onclick="this.classList.remove('open')"><img alt=""></div>
+<script>
+  document.querySelectorAll('.zoom').forEach(el => el.addEventListener('click', () => {
+    const img = el.querySelector('img'); if (!img) return;
+    const lb = document.getElementById('lb'); lb.querySelector('img').src = img.src; lb.classList.add('open');
+  }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lb').classList.remove('open'); });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  const revealAll = () => document.querySelectorAll('.reveal').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in'); else io.observe(el);
+  });
+  revealAll(); window.addEventListener('load', revealAll);
+  const links = [...document.querySelectorAll('.navlink')];
+  const map = links.map(l => ({ l, sec: document.querySelector(l.getAttribute('href')) })).filter(x => x.sec);
+  function updateActiveNav() {
+    let current = null;
+    for (const m of map) if (m.sec.getBoundingClientRect().top <= 90) current = m;
+    links.forEach(l => l.classList.remove('active'));
+    if (current) current.l.classList.add('active');
+  }
+  updateActiveNav(); window.addEventListener('scroll', updateActiveNav, { passive: true });
+</script>
+</body>
+</html>

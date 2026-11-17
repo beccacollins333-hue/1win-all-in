@@ -8,7 +8,7 @@
 <meta name="description" content="1win All In. A New Year's stunt.">
 <meta property="og:title" content="1win × All In">
 <meta property="og:description" content="One table. One open ramp.">
-<meta property="og:image" content="photos/freefall.jpg">
+<meta property="og:image" content="photos/hero.jpg">
 <meta name="theme-color" content="#050d1c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230c2f7a'/%3E%3Ccircle cx='50' cy='50' r='41' fill='none' stroke='%23fff' stroke-width='12' stroke-dasharray='16 16.2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23050d1c' stroke='%23e8c57a' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,19 +66,21 @@
   .in .r{opacity:1;transform:none}
   .d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}
 
-  /* 01 hero: bare felt, no photo */
-  #hero{padding:0;justify-content:center;text-align:center;background:radial-gradient(70% 60% at 50% 46%,#123a8f 0%,var(--felt) 45%,var(--ink) 100%)}
-  #hero .oval{position:absolute;left:50%;top:50%;width:min(150vh,128vw);aspect-ratio:1.85;margin:calc(min(150vh,128vw) / -3.7) 0 0 calc(min(150vh,128vw) / -2);border-radius:50%;border:1px solid rgba(232,197,122,.34);box-shadow:inset 0 0 0 14px rgba(255,255,255,.015),0 0 120px rgba(47,125,255,.18);z-index:0}
-  #hero .oval:after{content:"";position:absolute;inset:7%;border-radius:50%;border:1px dashed rgba(255,255,255,.12)}
-  #hero .inner{z-index:2;padding:0 var(--gut)}
-  .tag{display:inline-flex;align-items:center;gap:12px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-  .tag:before,.tag:after{content:"";width:34px;height:1px;background:var(--gold);opacity:.6}
-  #hero h1{display:block}
+  /* 01 hero: the champagne shot */
+  #hero{padding:0;align-items:flex-end;background:var(--ink)}
+  #hero .frame{position:absolute;inset:0;z-index:0;overflow:hidden}
+  #hero .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 38%;will-change:transform}
+  #hero .frame .shade{background:linear-gradient(0deg,rgba(5,13,28,.94) 0%,rgba(5,13,28,.72) 22%,rgba(5,13,28,.12) 52%,rgba(5,13,28,.28) 100%)}
+  #hero .inner{z-index:2;padding:0 var(--gut) 74px;max-width:none}
+  #hero h1{font-size:clamp(84px,15vw,250px);text-shadow:0 8px 50px rgba(0,0,0,.45)}
+  .titlerow{display:flex;align-items:center;gap:clamp(16px,2.6vw,44px)}
+  .tag{display:inline-flex;align-items:center;gap:12px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  .tag:after{content:"";width:34px;height:1px;background:var(--gold);opacity:.6}
   .wx{display:inline-block;white-space:nowrap}
   .ch{display:inline-block;will-change:transform,opacity}
   .ch.dot{color:var(--gold)}
-  #chiphome{width:132px;height:132px;margin:26px auto 0}
-  .cue{position:absolute;bottom:26px;left:0;right:0;z-index:3;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:10px}
+  #chiphome{width:clamp(84px,9vw,140px);aspect-ratio:1;flex:none}
+  .cue{position:absolute;bottom:22px;right:var(--gut);z-index:3;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:10px}
   .cue:after{content:"";width:1px;height:38px;background:linear-gradient(180deg,var(--gold),transparent);animation:cue 1.8s ease-in-out infinite;transform-origin:top}
   @keyframes cue{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 
@@ -172,8 +174,11 @@
     h1{font-size:clamp(84px,27vw,150px)}
     h2{font-size:clamp(50px,15.5vw,84px)}
     .hs{font-size:clamp(34px,10.4vw,56px)}
-    #chiphome{width:96px;height:96px;margin-top:18px}
-    #hero .oval{width:150vw;aspect-ratio:.72;margin:calc(150vw / -1.44) 0 0 -75vw}
+    #hero h1{font-size:clamp(76px,25vw,130px)}
+    #hero .inner{padding-bottom:64px}
+    #hero .frame img{object-position:56% 40%}
+    #chiphome{width:72px}
+    .cue{display:none}
     .shot{border-radius:16px;aspect-ratio:4/3}
     .spot span{font-size:10px;padding:5px 9px;left:20px}
     .spot.l span{right:20px}
@@ -216,11 +221,13 @@
 
 <!-- 01 -->
 <section class="slide" id="hero">
-  <div class="oval"></div>
+  <div class="frame">
+    <img src="photos/hero.jpg" alt="Concept render: the crew in tuxedos popping champagne at the 1win poker table inside the plane, ramp open">
+    <div class="shade"></div>
+  </div>
   <div class="inner">
     <div class="tag">1win · New Year's</div>
-    <h1 aria-label="All in."><span class="split">All in.</span></h1>
-    <div id="chiphome"></div>
+    <div class="titlerow"><h1 aria-label="All in."><span class="split">All in.</span></h1><div id="chiphome"></div></div>
   </div>
   <div class="cue">Scroll</div>
 </section>
@@ -400,11 +407,12 @@ if(window.gsap&&window.ScrollTrigger&&!reduced){
   /* hero: letters are dealt in, then mucked off the felt as you scroll */
   gsap.from('#hero .ch',{x:()=>innerWidth*.75,y:()=>-innerHeight*.7,rotation:()=>rnd(-70,70),opacity:0,stagger:.085,duration:.95,ease:'power3.out',delay:.25});
   gsap.from('#hero .tag',{opacity:0,y:20,duration:.9,delay:.1});
-  gsap.from('#hero .oval',{scale:.7,opacity:0,duration:1.6,ease:'power2.out'});
+  gsap.from('#hero .frame img',{scale:1.18,duration:2.2,ease:'power2.out'});
   gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=110%',scrub:1,pin:true,anticipatePin:1}})
     .to('#hero .tag, #hero .cue',{opacity:0,duration:.15},0)
     .fromTo('#hero .ch',{x:0,y:0,rotation:0,opacity:1},{x:()=>-innerWidth*.9,y:()=>rnd(-260,260),rotation:()=>rnd(-140,140),opacity:0,stagger:{each:.05,from:'end'},ease:'power2.in',duration:.6,immediateRender:false},.05)
-    .fromTo('#hero .oval',{scale:1,opacity:1},{scale:5,opacity:0,ease:'power2.in',duration:.9,immediateRender:false},.1);
+    .fromTo('#hero .frame img',{scale:1},{scale:1.5,ease:'none',duration:1,immediateRender:false},0)
+    .to('#hero .frame',{opacity:0,duration:.3},.7);
 
   /* countdown, then the ramp opens on the exit shot */
   const tl=gsap.timeline({scrollTrigger:{trigger:'#count',start:'top top',end:'+=260%',scrub:1,pin:true,anticipatePin:1}});

@@ -1,181 +1,473 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%231479FF%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-family=%22Arial%22 font-weight=%22900%22 font-size=%2230%22 fill=%22white%22 text-anchor=%22middle%22%3E1w%3C/text%3E%3C/svg%3E">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1win — All In</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>1win × All In</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="1win All In. A New Year's stunt.">
+<meta property="og:title" content="1win × All In">
+<meta property="og:description" content="One table. One open ramp.">
+<meta property="og:image" content="photos/freefall.jpg">
+<meta name="theme-color" content="#050d1c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230c2f7a'/%3E%3Ccircle cx='50' cy='50' r='41' fill='none' stroke='%23fff' stroke-width='12' stroke-dasharray='16 16.2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23050d1c' stroke='%23e8c57a' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script>
-tailwind.config = {
-  theme: { extend: {
-    colors: { ink: '#0A0B0E', panel: '#101218', winblue: '#1479FF', winblue2: '#4DA3FF', mute: '#8A93A6' },
-    fontFamily: { head: ['Sora', 'sans-serif'], body: ['Inter', 'sans-serif'] },
-  } },
-};
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
-  html { scroll-behavior: smooth; }
-  body { background: #0A0B0E; }
-  section[id] { scroll-margin-top: 72px; }
-  ::selection { background: #1479FF; color: #fff; }
-  .eyebrow { letter-spacing: .28em; }
-  .hero-copy h1, .hero-copy p, .hero-copy h2 { text-shadow: 0 2px 28px rgba(0,0,0,.75), 0 1px 4px rgba(0,0,0,.5); }
-  .slot { position: relative; overflow: hidden; background: #101218; border: 1px solid rgba(255,255,255,.08); }
-  .slot img { width: 100%; height: 100%; object-fit: cover; display:block; }
-  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
-  .reveal.in { opacity: 1; transform: none; }
-  .navlink { position: relative; min-height: 44px; display: inline-flex; align-items: center; }
-  .navlink::after { content:''; position:absolute; left:0; bottom:8px; height:1px; width:0; background:#1479FF; transition:width .3s ease; }
-  .navlink.active { color: #fff; }
-  .navlink.active::after { width: 100%; }
-  .zoom { cursor: zoom-in; }
-  #lb { position: fixed; inset: 0; z-index: 100; background: rgba(5,6,8,.94); display: none; align-items: center; justify-content: center; padding: 16px; cursor: zoom-out; }
-  #lb.open { display: flex; }
-  #lb img { max-width: 100%; max-height: 100%; border-radius: 12px; }
-  @media print { .reveal { opacity:1 !important; transform:none !important; } .no-print{display:none;} }
+  :root{
+    --ink:#050d1c; --felt:#0a1d44; --felt2:#0c2f7a; --blue:#2f7dff; --gold:#e8c57a; --gold2:#f6e3b4;
+    --cream:#f5efe2; --white:#fff; --mute:rgba(255,255,255,.62); --line:rgba(255,255,255,.14);
+    --gut:32px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--ink)}
+  body{background:var(--ink);color:var(--white);font-family:"DM Sans",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+
+  /* fixed layer */
+  #fx{position:fixed;inset:0;width:100%;height:100%;z-index:30;pointer-events:none}
+  .progress{position:fixed;left:0;top:0;height:2px;width:0;z-index:41;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 14px rgba(232,197,122,.8)}
+  .bar{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:20px var(--gut);font-size:13px;letter-spacing:.14em;text-transform:uppercase;pointer-events:none;text-shadow:0 1px 12px rgba(0,0,0,.6);transition:color .4s}
+  .bar b{font-weight:500}
+  .bar em{font-family:"Instrument Serif",serif;font-style:italic;text-transform:none;letter-spacing:0;font-size:19px;color:var(--gold)}
+  .bar.dark{color:#0a1730;text-shadow:none}
+  .bar.dark em{color:#b08422}
+
+  /* the chip that falls through the whole page */
+  #chip{position:fixed;left:0;top:0;width:100px;height:100px;margin:-50px 0 0 -50px;z-index:5;pointer-events:none;opacity:0;will-change:transform,opacity;filter:drop-shadow(0 18px 22px rgba(0,0,0,.55))}
+  #chip .spin{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+  #chip svg{position:absolute;inset:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+  #chip svg.back{transform:rotateY(180deg)}
+
+  /* slides */
+  .slide{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:120px var(--gut)}
+  .inner{position:relative;z-index:6;width:100%;max-width:1240px;margin:0 auto}
+  .bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .bg img{width:100%;height:100%;object-fit:cover;will-change:transform}
+  .shade{position:absolute;inset:0;z-index:1}
+
+  h1,h2{font-family:"Anton",Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:.005em}
+  h1{font-size:clamp(92px,21vw,330px)}
+  h2{font-size:clamp(52px,9vw,150px)}
+  h2 i,h1 i{font-family:"Instrument Serif",serif;font-style:italic;text-transform:none;font-weight:400;color:var(--gold);letter-spacing:-.01em;font-size:1.04em;line-height:.9}
+  .eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+  .eyebrow s{text-decoration:none;font-size:17px;letter-spacing:0;display:inline-block}
+  .in .eyebrow s{animation:flipsuit 1s .2s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes flipsuit{from{transform:rotateY(180deg) scale(.4);opacity:0}to{transform:none;opacity:1}}
+  .lede{font-size:clamp(16px,1.5vw,20px);color:rgba(255,255,255,.82);max-width:470px;margin-top:22px}
+
+  /* reveal */
+  .r{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .in .r{opacity:1;transform:none}
+  .d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}
+
+  /* 01 hero: bare felt, no photo */
+  #hero{padding:0;justify-content:center;text-align:center;background:radial-gradient(70% 60% at 50% 46%,#123a8f 0%,var(--felt) 45%,var(--ink) 100%)}
+  #hero .oval{position:absolute;left:50%;top:50%;width:min(150vh,128vw);aspect-ratio:1.85;margin:calc(min(150vh,128vw) / -3.7) 0 0 calc(min(150vh,128vw) / -2);border-radius:50%;border:1px solid rgba(232,197,122,.34);box-shadow:inset 0 0 0 14px rgba(255,255,255,.015),0 0 120px rgba(47,125,255,.18);z-index:0}
+  #hero .oval:after{content:"";position:absolute;inset:7%;border-radius:50%;border:1px dashed rgba(255,255,255,.12)}
+  #hero .inner{z-index:2;padding:0 var(--gut)}
+  .tag{display:inline-flex;align-items:center;gap:12px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .tag:before,.tag:after{content:"";width:34px;height:1px;background:var(--gold);opacity:.6}
+  #hero h1{display:block}
+  .wx{display:inline-block;white-space:nowrap}
+  .ch{display:inline-block;will-change:transform,opacity}
+  .ch.dot{color:var(--gold)}
+  #chiphome{width:132px;height:132px;margin:26px auto 0}
+  .cue{position:absolute;bottom:26px;left:0;right:0;z-index:3;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:10px}
+  .cue:after{content:"";width:1px;height:38px;background:linear-gradient(180deg,var(--gold),transparent);animation:cue 1.8s ease-in-out infinite;transform-origin:top}
+  @keyframes cue{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+  /* 02 the table */
+  #table{background:linear-gradient(180deg,var(--ink),#071631 60%,var(--ink))}
+  #table .cols{display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;align-items:center}
+  .shot{position:relative;aspect-ratio:3/2;border-radius:22px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px var(--line)}
+  .shot img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}
+  .in .shot img{transform:none}
+  .spot{position:absolute;z-index:2;width:16px;height:16px;margin:-8px;border-radius:50%;background:var(--gold);opacity:0;transform:scale(0);transition:opacity .5s,transform .5s cubic-bezier(.3,1.6,.5,1)}
+  .in .spot{opacity:1;transform:none;animation:ping 2.2s 2s infinite}
+  .spot.s1{transition-delay:.9s}.spot.s2{transition-delay:1.15s}.spot.s3{transition-delay:1.4s}.spot.s4{transition-delay:1.65s}
+  @keyframes ping{0%{box-shadow:0 0 0 0 rgba(232,197,122,.7)}80%,100%{box-shadow:0 0 0 18px rgba(232,197,122,0)}}
+  .spot span{position:absolute;left:24px;top:50%;transform:translateY(-50%);white-space:nowrap;font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:99px;background:rgba(5,13,28,.78);border:1px solid rgba(232,197,122,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .spot.l span{left:auto;right:24px}
+
+  /* 03 countdown, then the ramp opens */
+  #count{padding:0;background:var(--ink)}
+  .digits{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center}
+  .digits span{position:absolute;font-family:"Anton",Impact,sans-serif;font-size:min(78vh,74vw);line-height:1;color:transparent;-webkit-text-stroke:2px var(--gold);opacity:0;will-change:transform,opacity}
+  .ring{position:absolute;left:50%;top:50%;width:min(92vh,92vw);height:min(92vh,92vw);margin:calc(min(92vh,92vw) / -2) 0 0 calc(min(92vh,92vw) / -2);z-index:1;opacity:.5}
+  .ring circle{fill:none;stroke:var(--gold);stroke-width:.4;stroke-dasharray:1 3.36}
+  .door{position:absolute;inset:0;z-index:3;clip-path:inset(47% 44% 47% 44% round 14px);will-change:clip-path}
+  .door img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+  .door:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,13,28,.8),rgba(5,13,28,0) 42%)}
+  #count .cap{position:absolute;left:0;right:0;bottom:64px;z-index:6;padding:0 var(--gut);text-align:center}
+
+  /* 04 freefall */
+  #fall{padding:0;align-items:flex-end}
+  #fall .shade{background:linear-gradient(0deg,rgba(5,13,28,.92) 0%,rgba(5,13,28,.25) 38%,rgba(5,13,28,0) 60%)}
+  #fall .inner{padding:0 var(--gut) 76px}
+  .notes{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .notes span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.3);background:rgba(5,13,28,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+  /* 05 crew, dealt as cards */
+  #crew{background:radial-gradient(80% 60% at 50% 100%,#123a8f 0%,var(--felt) 40%,var(--ink) 100%)}
+  .hand{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:56px;perspective:1400px}
+  .card{aspect-ratio:5/7;opacity:0;transform:translate(70vw,-60vh) rotate(38deg);transition:transform 1s cubic-bezier(.2,.85,.25,1),opacity .25s;transition-delay:calc(var(--i)*.13s)}
+  .in .card{opacity:1;transform:rotate(var(--tilt,0deg))}
+  .flip{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateY(180deg);transition:transform .9s cubic-bezier(.3,.8,.3,1);transition-delay:calc(var(--i)*.13s + .85s)}
+  .in .flip{transform:none}
+  .face{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+  .face.front{background:var(--cream);color:#0a1730;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14% 8% 10%;box-shadow:0 22px 40px rgba(0,0,0,.45)}
+  .face.back{transform:rotateY(180deg);background:repeating-linear-gradient(45deg,#0c2f7a 0 8px,#0a2563 8px 16px);border:6px solid var(--cream);display:flex;align-items:center;justify-content:center;font-family:"Anton",sans-serif;font-size:22px;letter-spacing:.04em;font-style:italic}
+  .idx{position:absolute;left:9%;top:6%;font-family:"Anton",sans-serif;font-size:clamp(18px,1.9vw,28px);line-height:1;text-align:center}
+  .idx small{display:block;font-family:"DM Sans",sans-serif;font-size:.72em;margin-top:2px}
+  .idx.b{left:auto;top:auto;right:9%;bottom:6%;transform:rotate(180deg)}
+  .red{color:#c8322f}
+  .face img,.mono{width:58%;aspect-ratio:1;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--cream),0 0 0 4px rgba(10,23,48,.25)}
+  .mono{display:flex;align-items:center;justify-content:center;background:#0c2f7a;color:var(--cream);font-family:"Anton",sans-serif;font-size:clamp(20px,2.2vw,34px)}
+  .face b{display:block;font-family:"Anton",sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(15px,1.45vw,22px);line-height:1.05;margin-top:12%;letter-spacing:.01em}
+  .face em{display:block;font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(14px,1.25vw,19px);color:#5a6781;min-height:1.4em}
+  .card.lead .face.front{box-shadow:0 0 0 3px var(--gold),0 22px 50px rgba(232,197,122,.3)}
+  .card.lead .face em{color:#a57a1e}
+
+  /* 06 last hand */
+  #last{padding:0;justify-content:center;align-items:flex-start;text-align:center}
+  #last .shade{background:linear-gradient(180deg,rgba(5,13,28,.78) 0%,rgba(5,13,28,.2) 38%,rgba(5,13,28,0) 55%,rgba(5,13,28,.35) 100%)}
+  #last .inner{padding:13vh var(--gut) 0}
+  #last .bg img{object-position:50% 70%}
+  #last h2{text-shadow:0 6px 40px rgba(0,0,0,.5)}
+
+  /* 07 buy-in */
+  #buyin{background:radial-gradient(60% 55% at 50% 60%,#123a8f 0%,var(--felt) 45%,var(--ink) 100%);text-align:center;justify-content:center}
+  #buyin .eyebrow{justify-content:center}
+  #slot{width:118px;height:118px;border-radius:50%;margin:0 auto 26px;border:1px dashed rgba(232,197,122,.55);transition:box-shadow .8s,border-color .8s}
+  #slot.on{border-color:transparent;box-shadow:0 0 60px 6px rgba(232,197,122,.35)}
+  .price{font-family:"Anton",Impact,sans-serif;font-size:clamp(84px,19vw,300px);line-height:.9;background:linear-gradient(180deg,#fff 30%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+  .under{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(22px,2.4vw,34px);color:var(--gold);margin-top:14px}
+
+  /* 08 close */
+  #deal{background:var(--cream);color:#0a1730;text-align:center;justify-content:center;min-height:86svh}
+  #deal h2 i{color:#b08422}
+  .who{margin-top:34px;font-size:17px}
+  .who a{display:inline-block;padding:14px 26px;margin-top:16px;border-radius:99px;background:#0a1730;color:var(--cream);text-decoration:none;font-weight:500;transition:transform .3s,background .3s}
+  .who a:hover{transform:translateY(-2px);background:#0c2f7a}
+  .suits{display:flex;justify-content:center;gap:18px;font-size:22px;margin-bottom:26px;color:#0a1730}
+  .suits span{opacity:0;transform:translateY(16px) rotate(-20deg);transition:all .6s cubic-bezier(.3,1.5,.5,1);transition-delay:calc(var(--i)*.09s)}
+  .in .suits span{opacity:1;transform:none}
+
+  @media (max-width:1000px){
+    #table .cols{grid-template-columns:1fr;gap:34px}
+    .hand{grid-template-columns:repeat(3,1fr);gap:14px}
+    .face b{font-size:clamp(15px,2.6vw,24px)}.face em{font-size:clamp(14px,2.2vw,20px)}
+  }
+  @media (max-width:640px){
+    :root{--gut:16px}
+    .bar{padding:14px var(--gut);font-size:11px}
+    .bar em{font-size:16px}
+    .slide{padding:92px var(--gut) 84px}
+    h1{font-size:clamp(84px,27vw,150px)}
+    h2{font-size:clamp(50px,15.5vw,84px)}
+    #chiphome{width:96px;height:96px;margin-top:18px}
+    #hero .oval{width:150vw;aspect-ratio:.72;margin:calc(150vw / -1.44) 0 0 -75vw}
+    .shot{border-radius:16px;aspect-ratio:4/3}
+    .spot span{font-size:10px;padding:5px 9px;left:20px}
+    .spot.l span{right:20px}
+    #count .cap{bottom:54px}
+    .door img{object-position:47% 50%}
+    #fall .inner{padding:0 var(--gut) 54px}
+    .hand{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:38px}
+    .face b{font-size:19px}.face em{font-size:16px}.idx{font-size:22px}.mono{font-size:28px}
+    #slot{width:92px;height:92px}
+    #deal{min-height:80svh}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .r,.card,.spot,.suits span{opacity:1;transform:none}
+    .flip{transform:none}
+    .digits,.ring{display:none}
+    .door{clip-path:none}
+  }
 </style>
 </head>
-<body class="font-body text-white antialiased">
+<body>
+<canvas id="fx"></canvas>
+<div class="progress" id="progress"></div>
+<div class="bar" id="bar"><span><b>1win</b> × All In</span><em>New Year's</em></div>
 
-<header class="no-print fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-[72px] flex items-center justify-between">
-    <a href="#hero" class="font-head font-extrabold tracking-tight text-sm">
-      <span class="text-winblue">1win</span> <span class="text-mute font-semibold">× All In</span>
-    </a>
-    <nav class="hidden md:flex gap-7 text-sm text-mute font-medium">
-      <a href="#concept" class="navlink hover:text-white transition">Concept</a>
-      <a href="#crew" class="navlink hover:text-white transition">Crew</a>
-      <a href="#branding" class="navlink hover:text-white transition">Branding</a>
-      <a href="#budget" class="navlink hover:text-white transition">Budget</a>
-    </nav>
+<div id="chip" aria-hidden="true"><div class="spin">
+  <svg viewBox="0 0 100 100"><use href="#chipart"/></svg>
+  <svg class="back" viewBox="0 0 100 100"><use href="#chipart"/></svg>
+</div></div>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <g id="chipart">
+    <circle cx="50" cy="50" r="49" fill="#0c2f7a"/>
+    <circle cx="50" cy="50" r="42.5" fill="none" stroke="#fff" stroke-width="11" stroke-dasharray="16.7 16.7"/>
+    <circle cx="50" cy="50" r="49" fill="none" stroke="#e8c57a" stroke-width="1.2"/>
+    <circle cx="50" cy="50" r="33" fill="#050d1c" stroke="#e8c57a" stroke-width="1.6"/>
+    <circle cx="50" cy="50" r="28.5" fill="none" stroke="rgba(232,197,122,.45)" stroke-width=".6" stroke-dasharray="1.4 2.2"/>
+    <text x="50" y="56" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-style="italic" font-size="17" fill="#fff">1win</text>
+  </g>
+</defs></svg>
+
+<!-- 01 -->
+<section class="slide" id="hero">
+  <div class="oval"></div>
+  <div class="inner">
+    <div class="tag">1win · New Year's</div>
+    <h1 aria-label="All in."><span class="split">All in.</span></h1>
+    <div id="chiphome"></div>
   </div>
-</header>
+  <div class="cue">Scroll</div>
+</section>
 
-<!-- HERO -->
-<section id="hero" class="relative pt-[72px]">
-  <img src="photos/freefall.jpg" alt="Four creators seated at a 1win poker table in freefall" class="w-full block md:aspect-[2/1] md:object-cover md:object-[50%_35%]">
-  <div class="hidden md:block absolute inset-x-0 bottom-0 top-[72px] bg-gradient-to-t from-ink/85 via-ink/10 to-transparent"></div>
-  <div class="md:absolute md:inset-x-0 md:bottom-0 md:top-[72px] flex items-end pt-8 pb-4 md:pb-12 lg:pb-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 w-full hero-copy">
-      <p class="eyebrow uppercase text-white/90 text-xs md:text-sm font-semibold mb-4">New Year's · One table · One open ramp</p>
-      <h1 class="font-head font-extrabold leading-[0.92] text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight">1WIN<br>ALL IN.</h1>
+<!-- 02 -->
+<section class="slide" id="table">
+  <div class="inner cols">
+    <div>
+      <div class="eyebrow r"><s>♠</s>The table</div>
+      <h2 class="r d1">One table.<br><i>Four stools.</i></h2>
+      <p class="lede r d2">A 1win poker table on a platform. We sit down at it, and it goes off the open ramp of the plane.</p>
+    </div>
+    <div class="shot r d2">
+      <img src="photos/stools.jpg" alt="Concept render: a 1win poker table and four stools on a thin metal platform inside the plane, ramp open">
+      <i class="spot s1" style="left:56%;top:37%"><span>The felt</span></i>
+      <i class="spot s2 l" style="left:41.5%;top:27.5%"><span>Every stool</span></i>
+      <i class="spot s3 l" style="left:47%;top:81%"><span>The platform</span></i>
+      <i class="spot s4 l" style="left:38%;top:44%"><span>Chips and cards</span></i>
     </div>
   </div>
 </section>
 
-<!-- 01 · CONCEPT -->
-<section id="concept" class="relative overflow-hidden py-14 md:py-20">
-  <div aria-hidden="true" class="pointer-events-none absolute top-10 right-6 select-none"><span class="font-head font-extrabold leading-none tracking-tighter text-white/[0.10]" style="font-size:9vw">1win</span></div>
-  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-    <p class="eyebrow uppercase text-winblue text-sm font-bold reveal">01 — The Concept</p>
-    <div class="reveal mt-10 grid md:grid-cols-3 gap-6 md:gap-10 items-end">
-      <div>
-        <div class="font-head font-extrabold text-3xl md:text-4xl">The Table</div>
-        <p class="mt-3 text-mute leading-relaxed">A 1win poker table on a platform with four stools, pushed off the open ramp of the plane with the creators sitting at it.</p>
-      </div>
-      <div class="md:col-span-2 slot aspect-[3/2] rounded-xl zoom"><img src="photos/exit.jpg" alt="The poker table leaving the ramp"></div>
-    </div>
-    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mt-3 md:mt-6">
-      <figure><div class="slot aspect-[3/2] rounded-lg zoom"><img src="photos/stools.jpg" alt="In the plane"></div><figcaption class="mt-2 text-xs text-mute eyebrow uppercase">In the plane</figcaption></figure>
-      <figure><div class="slot aspect-[3/2] rounded-lg zoom"><img src="photos/exit.jpg" alt="Off the ramp"></div><figcaption class="mt-2 text-xs text-mute eyebrow uppercase">Off the ramp</figcaption></figure>
-      <figure><div class="slot aspect-[3/2] rounded-lg zoom"><img src="photos/freefall.jpg" alt="Freefall"></div><figcaption class="mt-2 text-xs text-mute eyebrow uppercase">Freefall</figcaption></figure>
-      <figure><div class="slot aspect-[3/2] rounded-lg zoom"><img src="photos/below.jpg" alt="From below"></div><figcaption class="mt-2 text-xs text-mute eyebrow uppercase">From below</figcaption></figure>
+<!-- 03 -->
+<section class="slide" id="count">
+  <svg class="ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" pathLength="261.6"/></svg>
+  <div class="digits" aria-hidden="true"><span>3</span><span>2</span><span>1</span></div>
+  <div class="door"><img src="photos/exit.jpg" alt="Concept render: four skydivers seated at the 1win poker table as it slides off the ramp"></div>
+  <div class="cap"><h2>Out <i>the back.</i></h2></div>
+</section>
+
+<!-- 04 -->
+<section class="slide" id="fall">
+  <div class="bg"><img src="photos/freefall.jpg" alt="Concept render: the table in freefall with all four still seated, the plane above"></div>
+  <div class="shade"></div>
+  <div class="inner">
+    <h2 class="r">Four seats.<br><i>No floor.</i></h2>
+    <div class="notes r d1"><span>Camera flyer angle</span><span>1win on the crew</span></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="slide" id="crew">
+  <div class="inner">
+    <div class="eyebrow r"><s class="red">♥</s>The crew</div>
+    <h2 class="r d1">At <i>the table.</i></h2>
+    <div class="hand">
+      <div class="card lead" style="--i:0;--tilt:-2deg"><div class="flip">
+        <div class="face back">1win</div>
+        <div class="face front"><span class="idx">K<small>♠</small></span><span class="idx b">K<small>♠</small></span><img src="photos/kyle.jpg" alt="Kyle Zellner"><b>Kyle Zellner</b><em>Lead</em></div>
+      </div></div>
+      <div class="card" style="--i:1;--tilt:1.5deg"><div class="flip">
+        <div class="face back">1win</div>
+        <div class="face front"><span class="idx red">N<small>♥</small></span><span class="idx b red">N<small>♥</small></span><img src="photos/noah.jpg" alt="Noah Lipsitz"><b>Noah Lipsitz</b><em>Creator</em></div>
+      </div></div>
+      <div class="card" style="--i:2;--tilt:-1deg"><div class="flip">
+        <div class="face back">1win</div>
+        <div class="face front"><span class="idx red">C<small>♦</small></span><span class="idx b red">C<small>♦</small></span><img src="photos/callie.jpg" alt="Callie Rounds"><b>Callie Rounds</b><em>Creator</em></div>
+      </div></div>
+      <div class="card" style="--i:3;--tilt:2deg"><div class="flip">
+        <div class="face back">1win</div>
+        <div class="face front"><span class="idx">Y<small>♣</small></span><span class="idx b">Y<small>♣</small></span><span class="mono">YR</span><b>Yusef Reown</b><em>Creator</em></div>
+      </div></div>
+      <div class="card" style="--i:4;--tilt:-1.5deg"><div class="flip">
+        <div class="face back">1win</div>
+        <div class="face front"><span class="idx">F<small>♠</small></span><span class="idx b">F<small>♠</small></span><span class="mono">FC</span><b>Freddy Chase</b><em>Creator · TBC</em></div>
+      </div></div>
+      <div class="card" style="--i:5;--tilt:1deg"><div class="flip">
+        <div class="face back">1win</div>
+        <div class="face front"><span class="idx red">S<small>♥</small></span><span class="idx b red">S<small>♥</small></span><span class="mono">SR</span><b>Shelby Robbins</b><em>&nbsp;</em></div>
+      </div></div>
     </div>
   </div>
 </section>
 
-<!-- 02 · CREW -->
-<section id="crew" class="relative overflow-hidden py-14 md:py-20 border-y border-white/5 bg-panel/40">
-  <div aria-hidden="true" class="pointer-events-none absolute top-10 right-6 select-none"><span class="font-head font-extrabold leading-none tracking-tighter text-white/[0.10]" style="font-size:9vw">1win</span></div>
-  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-    <p class="eyebrow uppercase text-winblue text-sm font-bold reveal">02 — The Crew</p>
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10 mt-12">
-      <div class="reveal text-center"><img src="photos/kyle.jpg" alt="Kyle Zellner" class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover mx-auto ring-2 ring-winblue"><div class="font-head font-bold mt-4">Kyle Zellner</div><div class="text-winblue text-xs eyebrow uppercase mt-1">Lead</div></div>
-      <div class="reveal text-center"><img src="photos/noah.jpg" alt="Noah Lipsitz" class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover mx-auto ring-1 ring-white/15"><div class="font-head font-bold mt-4">Noah Lipsitz</div><div class="text-mute text-xs eyebrow uppercase mt-1">Creator</div></div>
-      <div class="reveal text-center"><img src="photos/callie.jpg" alt="Callie Rounds" class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover mx-auto ring-1 ring-white/15"><div class="font-head font-bold mt-4">Callie Rounds</div><div class="text-mute text-xs eyebrow uppercase mt-1">Creator</div></div>
-      <div class="reveal text-center"><div class="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto ring-1 ring-white/15 bg-panel flex items-center justify-center font-head font-extrabold text-2xl text-mute">YR</div><div class="font-head font-bold mt-4">Yusef Reown</div><div class="text-mute text-xs eyebrow uppercase mt-1">Creator</div></div>
-      <div class="reveal text-center"><div class="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto ring-1 ring-white/15 bg-panel flex items-center justify-center font-head font-extrabold text-2xl text-mute">FC</div><div class="font-head font-bold mt-4">Freddy Chase</div><div class="text-mute text-xs eyebrow uppercase mt-1">Creator · TBC</div></div>
-      <div class="reveal text-center"><div class="w-24 h-24 md:w-28 md:h-28 rounded-full mx-auto ring-1 ring-white/15 bg-panel flex items-center justify-center font-head font-extrabold text-2xl text-mute">SR</div><div class="font-head font-bold mt-4">Shelby Robbins</div><div class="text-mute text-xs eyebrow uppercase mt-1">&nbsp;</div></div>
-    </div>
+<!-- 06 -->
+<section class="slide" id="last">
+  <div class="bg"><img src="photos/below.jpg" alt="Concept render: looking up as the table and its four riders drop off the ramp"></div>
+  <div class="shade"></div>
+  <div class="inner">
+    <h2 class="r">The last hand<br><i>of the year.</i></h2>
   </div>
 </section>
 
-<!-- 03 · BRANDING -->
-<section id="branding" class="relative overflow-hidden py-14 md:py-20">
-  <div aria-hidden="true" class="pointer-events-none absolute top-10 right-6 select-none"><span class="font-head font-extrabold leading-none tracking-tighter text-white/[0.10]" style="font-size:9vw">1win</span></div>
-  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-    <p class="eyebrow uppercase text-winblue text-sm font-bold reveal">03 — Branding</p>
-    <div class="reveal mt-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-      <div class="slot aspect-[3/2] rounded-xl zoom"><img src="photos/stools.jpg" alt="The 1win table and platform"></div>
-      <ul class="space-y-3 text-white/85 md:text-lg">
-        <li class="flex gap-3"><span class="text-winblue">→</span> 1win felt, chips and cards</li>
-        <li class="flex gap-3"><span class="text-winblue">→</span> 1win on every stool</li>
-        <li class="flex gap-3"><span class="text-winblue">→</span> 1win across the platform</li>
-        <li class="flex gap-3"><span class="text-winblue">→</span> Creators in 1win merch</li>
-        <li class="flex gap-3"><span class="text-winblue">→</span> Camera flyer angle</li>
-      </ul>
-    </div>
+<!-- 07 -->
+<section class="slide" id="buyin">
+  <div class="inner">
+    <div class="eyebrow r"><s class="red">♦</s>The buy-in</div>
+    <div id="slot"></div>
+    <div class="price r d1">$<span id="price" data-count="88000">88,000</span></div>
+    <div class="under r d2">1win All In</div>
   </div>
 </section>
 
-<!-- BAND -->
-<section class="relative zoom" aria-label="From below">
-  <img src="photos/below.jpg" alt="The 1win table dropping off the ramp, seen from below" class="w-full block h-[60vh] md:h-[80vh] object-cover">
-  <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-ink/30"></div>
-  <div class="absolute inset-x-0 bottom-0 pb-8 md:pb-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 hero-copy">
-      <h2 class="font-head font-extrabold text-3xl sm:text-5xl md:text-6xl tracking-tight leading-[0.95]">THE LAST HAND<br>OF THE YEAR.</h2>
-    </div>
+<!-- 08 -->
+<section class="slide" id="deal">
+  <div class="inner">
+    <div class="suits"><span style="--i:0">♠</span><span style="--i:1;color:#c8322f">♥</span><span style="--i:2;color:#c8322f">♦</span><span style="--i:3">♣</span></div>
+    <h2 class="r">Your <i>deal.</i></h2>
+    <p class="who r d1">Kyle Zellner<br><a href="mailto:kylezellner2@gmail.com">kylezellner2@gmail.com</a></p>
   </div>
 </section>
 
-<!-- 04 · BUDGET -->
-<section id="budget" class="relative overflow-hidden py-14 md:py-20">
-  <div aria-hidden="true" class="pointer-events-none absolute top-10 right-6 select-none"><span class="font-head font-extrabold leading-none tracking-tighter text-white/[0.10]" style="font-size:9vw">1win</span></div>
-  <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
-    <p class="eyebrow uppercase text-winblue text-sm font-bold reveal">04 — Budget</p>
-    <div class="reveal rounded-2xl border border-white/10 p-10 md:p-14 text-center mt-12 max-w-xl mx-auto">
-      <div class="font-head font-bold text-lg">1win All In</div>
-      <div class="font-head font-extrabold text-6xl md:text-7xl text-winblue mt-4">$88,000</div>
-    </div>
-  </div>
-</section>
-
-<footer class="relative overflow-hidden py-14 md:py-20 border-t border-white/5 bg-panel/40 text-center">
-  <div class="relative max-w-3xl mx-auto px-4 sm:px-6">
-    <p class="font-head font-extrabold text-2xl md:text-3xl tracking-tight reveal">Kyle Zellner</p>
-    <p class="text-mute mt-3 reveal"><a href="mailto:kylezellner2@gmail.com" class="text-winblue hover:underline inline-block py-3">kylezellner2@gmail.com</a></p>
-  </div>
-</footer>
-
-<div id="lb" class="no-print" onclick="this.classList.remove('open')"><img alt=""></div>
 <script>
-  document.querySelectorAll('.zoom').forEach(el => el.addEventListener('click', () => {
-    const img = el.querySelector('img'); if (!img) return;
-    const lb = document.getElementById('lb'); lb.querySelector('img').src = img.src; lb.classList.add('open');
-  }));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lb').classList.remove('open'); });
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  const revealAll = () => document.querySelectorAll('.reveal').forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in'); else io.observe(el);
-  });
-  revealAll(); window.addEventListener('load', revealAll);
-  const links = [...document.querySelectorAll('.navlink')];
-  const map = links.map(l => ({ l, sec: document.querySelector(l.getAttribute('href')) })).filter(x => x.sec);
-  function updateActiveNav() {
-    let current = null;
-    for (const m of map) if (m.sec.getBoundingClientRect().top <= 90) current = m;
-    links.forEach(l => l.classList.remove('active'));
-    if (current) current.l.classList.add('active');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const $=s=>document.querySelector(s);
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.26});
+document.querySelectorAll('.slide').forEach(s=>io.observe(s));
+
+/* price count-up */
+let counted=false;
+function countPrice(){
+  if(counted)return;counted=true;
+  const el=$('#price'),to=+el.dataset.count,t0=performance.now(),dur=1700;
+  if(reduced){el.textContent=to.toLocaleString('en-US');return}
+  (function step(t){const p=clamp((t-t0)/dur),e=1-Math.pow(1-p,4);el.textContent=Math.round(to*e).toLocaleString('en-US');if(p<1)requestAnimationFrame(step)})(t0);
+  setTimeout(()=>{el.textContent=to.toLocaleString('en-US')},dur+250);
+}
+
+/* progress line, parallax, top bar colour on the light closing slide */
+const bar=$('#progress'),topbar=$('#bar'),deal=$('#deal'),bgs=[...document.querySelectorAll('.bg img')];
+function onScroll(){
+  const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  topbar.classList.toggle('dark',deal.getBoundingClientRect().top<40);
+  if(reduced)return;
+  bgs.forEach(img=>{const r=img.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;
+    img.style.transform='scale(1.14) translateY('+(r.top*-0.07)+'px)'});
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------- particles: confetti, fireworks, champagne bubbles ---------- */
+const FX=(function(){
+  const cv=$('#fx'),cx=cv.getContext('2d');let W,H,D,P=[],mode='',running=false,last=0,acc=0;
+  const cols=['#e8c57a','#f6e3b4','#ffffff','#2f7dff','#e8c57a'];
+  const R=Math.random;
+  function size(){D=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*D;cv.height=H*D;cx.setTransform(D,0,0,D,0,0)}
+  size();addEventListener('resize',size);
+  function confetti(x,y,n,pow){for(let i=0;i<n;i++){const a=R()*Math.PI*2,s=(.3+R())*pow;P.push({k:'c',x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-pow*.6,g:.16,w:5+R()*7,h:3+R()*4,rot:R()*6,vr:(R()-.5)*.4,col:cols[i%cols.length],life:1,dec:.005+R()*.006})}kick()}
+  function trickle(){P.push({k:'c',x:R()*W,y:-12,vx:(R()-.5)*.8,vy:.8+R()*1.3,g:.004,w:4+R()*6,h:3+R()*3,rot:R()*6,vr:(R()-.5)*.2,col:cols[(R()*cols.length)|0],life:1,dec:.0028})}
+  function firework(x,y){const n=64,c=cols[(R()*3)|0];for(let i=0;i<n;i++){const a=i/n*Math.PI*2,s=2.2+R()*4.2;P.push({k:'f',x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,g:.035,col:c,life:1,dec:.012+R()*.008})}}
+  function bubble(){P.push({k:'b',x:R()*W,y:H+12,vx:0,vy:-(.7+R()*1.9),g:0,r:1.5+R()*4.5,ph:R()*6,life:1,dec:.0032+R()*.003})}
+  function frame(t){
+    const dt=Math.min(40,t-last||16);last=t;acc+=dt;
+    if(mode==='hero'&&acc>90){acc=0;trickle()}
+    if(mode==='last'&&acc>620){acc=0;firework(W*(.12+R()*.76),H*(.14+R()*.4))}
+    if(mode==='buyin'&&acc>70){acc=0;bubble()}
+    cx.clearRect(0,0,W,H);
+    for(let i=P.length-1;i>=0;i--){const p=P[i];
+      p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.life-=p.dec;
+      if(p.life<=0||p.y>H+40||p.y<-60){P.splice(i,1);continue}
+      cx.globalAlpha=clamp(p.life*1.6);
+      if(p.k==='c'){p.rot+=p.vr;p.vx*=.992;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.scale(1,Math.cos(p.rot*2.3));cx.fillStyle=p.col;cx.fillRect(-p.w/2,-p.h/2,p.w,p.h);cx.restore()}
+      else if(p.k==='f'){p.vx*=.972;p.vy*=.972;cx.fillStyle=p.col;cx.shadowColor=p.col;cx.shadowBlur=10;cx.beginPath();cx.arc(p.x,p.y,1.3+p.life*1.6,0,7);cx.fill();cx.shadowBlur=0}
+      else{p.ph+=.05;p.x+=Math.sin(p.ph)*.4;cx.strokeStyle='rgba(246,227,180,.85)';cx.lineWidth=1;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.stroke()}
+    }
+    cx.globalAlpha=1;
+    if(P.length||mode)requestAnimationFrame(frame);else running=false;
   }
-  updateActiveNav(); window.addEventListener('scroll', updateActiveNav, { passive: true });
+  function kick(){if(!running&&!reduced){running=true;last=performance.now();requestAnimationFrame(frame)}}
+  function setMode(m){mode=m;if(m)kick()}
+  return{confetti:(x,y,n,p)=>{if(!reduced)confetti(x,y,n,p)},setMode};
+})();
+const vis={};
+const modeIO=new IntersectionObserver(es=>{es.forEach(e=>{vis[e.target.id]=e.isIntersecting});
+  FX.setMode(['hero','last','buyin'].find(id=>vis[id])||'')},{threshold:.45});
+['hero','last','buyin'].forEach(id=>modeIO.observe($('#'+id)));
+
+/* split the title into letters so they can be dealt like cards */
+document.querySelectorAll('.split').forEach(el=>{
+  el.innerHTML=el.textContent.split(' ').map(w=>'<span class="wx">'+[...w].map(c=>'<span class="ch'+(c==='.'?' dot':'')+'">'+c+'</span>').join('')+'</span>').join(' ');
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+let countST=null;
+if(window.gsap&&window.ScrollTrigger&&!reduced){
+  gsap.registerPlugin(ScrollTrigger);
+  const rnd=gsap.utils.random;
+
+  /* hero: letters are dealt in, then mucked off the felt as you scroll */
+  gsap.from('#hero .ch',{x:()=>innerWidth*.75,y:()=>-innerHeight*.7,rotation:()=>rnd(-70,70),opacity:0,stagger:.085,duration:.95,ease:'power3.out',delay:.25});
+  gsap.from('#hero .tag',{opacity:0,y:20,duration:.9,delay:.1});
+  gsap.from('#hero .oval',{scale:.7,opacity:0,duration:1.6,ease:'power2.out'});
+  gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=110%',scrub:1,pin:true,anticipatePin:1}})
+    .to('#hero .tag, #hero .cue',{opacity:0,duration:.15},0)
+    .fromTo('#hero .ch',{x:0,y:0,rotation:0,opacity:1},{x:()=>-innerWidth*.9,y:()=>rnd(-260,260),rotation:()=>rnd(-140,140),opacity:0,stagger:{each:.05,from:'end'},ease:'power2.in',duration:.6,immediateRender:false},.05)
+    .fromTo('#hero .oval',{scale:1,opacity:1},{scale:5,opacity:0,ease:'power2.in',duration:.9,immediateRender:false},.1);
+
+  /* countdown, then the ramp opens on the exit shot */
+  const tl=gsap.timeline({scrollTrigger:{trigger:'#count',start:'top top',end:'+=260%',scrub:1,pin:true,anticipatePin:1}});
+  countST=tl.scrollTrigger;
+  document.querySelectorAll('.digits span').forEach((d,i)=>{
+    tl.fromTo(d,{scale:2.6,opacity:0,rotation:-8},{scale:1,opacity:1,rotation:0,duration:.5,ease:'power3.out'},i)
+      .to(d,{scale:.55,opacity:0,duration:.4,ease:'power2.in'},i+.6);
+  });
+  tl.fromTo('.ring',{rotation:-90,transformOrigin:'50% 50%'},{rotation:90,duration:3,ease:'none'},0)
+    .to('.ring',{opacity:0,scale:1.6,duration:.4},3)
+    .call(()=>FX.confetti(innerWidth/2,innerHeight/2,150,11),null,3.05)
+    .fromTo('.door',{autoAlpha:0},{autoAlpha:1,duration:.12},2.95)
+    .fromTo('.door',{clipPath:'inset(47% 44% 47% 44% round 14px)'},{clipPath:'inset(0% 0% 0% 0% round 0px)',duration:1.3,ease:'power2.inOut'},3)
+    .fromTo('.door img',{scale:1.5},{scale:1.02,duration:1.6,ease:'power2.out'},3)
+    .fromTo('#count .cap',{opacity:0,y:60},{opacity:1,y:0,duration:.5},3.9)
+    .to({}, {duration:.5});
+
+  /* freefall drifts in */
+  gsap.fromTo('#fall .bg',{scale:1.18},{scale:1,ease:'none',scrollTrigger:{trigger:'#fall',start:'top bottom',end:'bottom top',scrub:true}});
+}else{
+  document.querySelectorAll('#count .cap').forEach(e=>e.style.opacity=1);
+  const d=$('.door');if(d)d.style.clipPath='none';
+  document.querySelectorAll('.digits,.ring').forEach(e=>e.style.display='none');
+}
+
+/* ---------- the chip: tossed in on the hero, tumbles down the page, lands on the price ---------- */
+(function(){
+  const chip=$('#chip'),spin=chip.querySelector('.spin'),home=$('#chiphome'),slot=$('#slot');
+  const t0=performance.now();let cx=0,cy=0,cs=1,first=true,landed=false;
+  function center(el){const r=el.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2,s:r.width/100}}
+  (function go(now){
+    const vw=innerWidth,vh=innerHeight,y=scrollY,doc=document.documentElement.scrollHeight-vh;
+    const s=center(slot);
+    const k=ease(clamp((vh*1.05-s.y)/(vh*.55)));          // 0 falling, 1 landed on the slot
+    let tx,ty,ts,rx=0,ry=0,rz=0,op=1;
+    if(reduced){tx=s.x;ty=s.y;ts=s.s;op=(s.y>-100&&s.y<vh+100)?1:0;if(op)countPrice()}
+    else{
+      const h=center(home),intro=clamp((now-t0-1150)/900),e=1-Math.pow(1-intro,3);
+      const leave=ease(clamp(y/(vh*.7)));                  // 0 at rest under the title
+      const p=doc>0?y/doc:0,small=vw<=640?.62:.84;
+      const wx=vw*(.5+(vw<=640?.3:.37)*Math.sin(p*Math.PI*7.3+.6)),wy=vh*(.5+.2*Math.sin(p*Math.PI*4.6+1.2));
+      tx=h.x+(wx-h.x)*leave;ty=h.y+(wy-h.y)*leave+(1-e)*vh*.75;ts=h.s+(small-h.s)*leave;
+      tx+=(s.x-tx)*k;ty+=(s.y-ty)*k;ts+=(s.s-ts)*k;
+      const live=leave*(1-k);
+      rx=y*.62*live;ry=y*.41*live;rz=y*.12*live+(1-e)*-200;
+      if(!leave){ry=Math.sin(now/900)*14;rx=Math.cos(now/1300)*8}
+      op=intro>0?1:0;
+      if(countST){const a=countST.start,b=countST.end;
+        op*=y<a?clamp((a-vh*.05-y)/(vh*.3)):clamp((y-(b-vh*.25))/(vh*.25))}
+      if(k>=.999&&!landed){landed=true;slot.classList.add('on');countPrice();FX.confetti(s.x,s.y,110,9)}
+    }
+    const f=(first||k>=.999||reduced)?1:.16;first=false;
+    cx+=(tx-cx)*f;cy+=(ty-cy)*f;cs+=(ts-cs)*f;
+    chip.style.opacity=op;
+    chip.style.transform='translate3d('+cx+'px,'+cy+'px,0) scale('+cs+')';
+    spin.style.transform='perspective(700px) rotateX('+rx+'deg) rotateY('+ry+'deg) rotateZ('+rz+'deg)';
+    requestAnimationFrame(go);
+  })(t0);
+})();
+addEventListener('load',()=>{if(window.ScrollTrigger)ScrollTrigger.refresh()});
 </script>
 </body>
 </html>
